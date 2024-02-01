@@ -1,0 +1,164 @@
+.app {
+  text-align: center;
+  background-color: #040A0A;
+}
+
+.app-logo {
+  height: 120px;
+  pointer-events: none;
+  position: relative;
+  left: -15px;  
+  margin-left: 10px;  
+  margin-top: 20px;
+}
+
+.app-microphone {
+  height: 120px;
+  pointer-events: none;
+  position: relative;
+  margin-bottom: 80px;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.app-logo-frame {
+  border: 1px solid red;
+}
+
+/*
+@media (prefers-reduced-motion: no-preference) {
+  .app-logo {
+    animation: app-logo-spin infinite 20s linear;
+  }
+}
+*/
+
+.app-header {
+  border: 1px solid red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 75px;
+  margin-top: 0;
+  color: white;
+  overflow: hidden;
+  background-color: #040A0A;
+}
+
+.app-link {
+  color: #61dafb;
+}
+
+.app-main {
+  border: 1px solid red;
+  position:absolute; 
+  top:75px;
+  bottom:50px;
+  overflow:auto;
+  background-color: #040A0A;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url("./img/stage1-large.jpg");
+  padding: 30px 100px;
+}
+
+.app-footer {
+
+  position: absolute;
+  height: 50px;
+  background-color: grey;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+}
+
+/*
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+*/
+
+.app-stage {
+  width: 800px;
+  margin-bottom: 100px;
+}
+
+.app-stage-title {
+  font-size: 30px;
+  color: #FDFDFD;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.app-stage-1 {
+  /*background-image: url("./img/stage1-large.jpg");*/
+}
+
+.app-stage-2 {
+  /*
+  height: 530px;
+  background-image: url("./img/stage1-large.jpg");
+  */
+}
+
+.app-stage-3 {
+  /*
+  background-image: url("./img/stage2-large.jpg");
+  */
+}
+
+.app-stage-4 {    
+  /*
+  background-image: url("./img/stage3-large.jpg");
+  */
+}
+
+.app-stage-image {
+  width: 80%;
+  margin: 10% auto;
+}
+
+.app-stage-content {
+  width: 80%;
+  margin: 1% auto;
+}
+
+.app-soundcloud {
+  width: 80%;
+  margin: 10% auto;
+}
+
+.app-youtube {
+  width: 80%;
+  margin: 10% auto;
+}
+
+.app-audio {
+  width: 80%;
+  margin: 10% auto;
+}
+
+.app-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.app-button-container button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
