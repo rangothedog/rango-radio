@@ -1,0 +1,94 @@
+{
+    "server": {
+        "name": "rango-radio",
+        "description": "Rango Radio API",
+        "port": 3001,
+        "host": "localhost",
+        "contentDirectory": "audio",
+        "logDirectory": "./logs",
+        "logLevel": "debug",
+        "cors": {
+            "enabled": true,
+            "origin": ["http://localhost:3000", "http://rangoradio.com"],
+            "allowedMethods": ["GET", "POST", "PUT", "DELETE"],
+            "allowedHeaders": ["Content-Type", "Authorization"]
+        },
+        "api": {
+            "version": "1.0.0",
+            "base": "/api",
+            "routes": [
+                {
+                    "path": "/",
+                    "method": "GET",
+                    "handler": "getApiInfo"
+                },
+                {
+                    "path": "/songs",
+                    "method": "GET",
+                    "handler": "getSongs"
+                },
+                {
+                    "path": "/songs/:id",
+                    "method": "GET",
+                    "handler": "getSong"
+                },
+                {
+                    "path": "/songs",
+                    "method": "POST",
+                    "handler": "createSong"
+                },
+                {
+                    "path": "/songs/:id",
+                    "method": "PUT",
+                    "handler": "updateSong"
+                },
+                {
+                    "path": "/songs/:id",
+                    "method": "DELETE",
+                    "handler": "deleteSong"
+                }
+            ]
+        }
+    },
+    
+    "artists": [{
+        "id": 1,
+        "name": "Rango",
+        "path": "rango",
+        "bio": "Rango is a technology mashup artist on the fringes of the Emerald City of Seattle.",
+        "image": "/images/rango/rango.jpg",
+        "featured": true,
+        "email": "mbmeadows@gmail.com",
+        "facebook": "https://www.facebook.com/rangomusic",
+        "twitter": "https://twitter.com/rangomusic",
+        "instagram": "https://www.instagram.com/rangomusic/",
+        "youtube": "https://www.youtube.com/channel/UC9Q4",
+        "city:" : "Seattle",
+        "state" : "WA",
+        "country" : "USA",
+        "albums": [{
+            "id": 1,
+            "title": "Country Song",
+            "path": "countrysong",
+            "date": "12/07/2022",
+            "cover": "/images/rango/countrysong/rango_country_song.jpg",
+            "genre": "Rock",
+            "tracks": [{
+                "id": 1,    
+                "title": "Country Song",
+                "path": "countrysong",
+                "date": "12/07/2022",
+                "genre": "Rock",
+                "duration": "00:05:01",
+                "image": "/image/rango/countrysong/countrysong/rango_country_song.jpg",
+                "stream": "/stream/rango/countrysong/countrysong/rango_country_song.mp3",
+                "download": "/download/rango/countrysong/countrysong/rango_country_song.mp3",
+                "spotify" : "https://open.spotify.com/track/0liZlm7UzSvv1CJEl2Xo2R?si=f78c64bef8c94757",
+                "amazon" : "https://www.amazon.com/music/player/albums/B0BPH8PP2Q?marketplaceId=ATVPDKIKX0DER&musicTerritory=US",
+                "apple" : "https://music.apple.com/us/album/country-song/1658698617?i=1658698618",
+                "playlist" : "https://open.spotify.com/playlist/03ZL6sTUJK2M77dQv1eWF4?si=0dd17d816bcb427b"
+            }]
+        }]
+    }]
+}
+  

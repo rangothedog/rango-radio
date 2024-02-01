@@ -1,0 +1,96 @@
+.audio-player {
+  
+}
+
+.audio-player-image {
+  height: 200px;
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+}
+
+.audio-player-track {      
+  width: 100%;
+  display: flex;
+}
+
+.audio-player-track-left {
+    width: 200px;
+    height: 200px;  
+}
+
+.audio-player-track-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.audio-player-track-row {
+    /*display: flex;*/
+    flex: 1;
+  }
+
+  .audio-player-track-col {
+    flex: 1;        
+  }
+*/
+
+.audio-player-canvas {
+    border: 1px solid green;
+    width: 640px;
+    height: 150px;
+    background-color: black;
+}
+
+.audio-player-canvas canvas {    
+    border: 1px solid red;
+    width: 640px;
+    height: 150px;  
+}
+
+.audio-player-button {    
+    font-size: 20px;
+    height: 25px;
+    padding: 10px;
+    color: #FDFDFD;  
+}
+
+.audio-player-artist {
+    font-size: 20px;
+    height: 25px;
+    padding: 5px 10px;
+    color: #FDFDFD;    
+}
+
+.audio-player-title {
+    font-size: 20px;
+    height: 25px;
+    padding: 5px 10px;
+    color: #FDFDFD;    
+}
+
+.audio-player-date {
+    font-size: 20px;
+    height: 25px;
+    padding: 5px 10px;
+    color: #FDFDFD;    
+}
+
+.audio-player-urls {
+    display: flex;
+    font-size: auto;
+    height: 25px;
+    padding: 5px 10px;
+    color: #FDFDFD;   
+}
+
+.audio-player-button.left {
+
+}
+
+.audio-player-button.right {
+
+}
+
+
+
