@@ -1,6 +1,11 @@
 .app {
   text-align: center;
   background-color: #040A0A;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .app-logo {
@@ -13,7 +18,7 @@
 }
 
 .app-microphone {
-  height: 120px;
+  height: 75px;
   pointer-events: none;
   position: relative;
   margin-bottom: 80px;
@@ -56,11 +61,7 @@
   top:75px;
   bottom:50px;
   overflow:auto;
-  background-color: #040A0A;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  background-color: #040A0A; 
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -91,14 +92,13 @@
 */
 
 .app-stage {
-  width: 800px;
+  width: 1200px;
   margin-bottom: 100px;
 }
 
 .app-stage-title {
   font-size: 30px;
   color: #FDFDFD;
-  margin-bottom: 20px;
   text-shadow: 2px 2px 4px #000000;
 }
 
@@ -161,4 +161,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.react-tabs__tab {  
+  padding: 2px 12px;  
+  height: 48px;
+}
+.react-tabs__tab--selected {
+  border-radius: 5px 5px;
+}
+
+.react-tabs__tab:focus:after {
+  content: '';
+  position: unset;
+  height: unset;
+  left: unset;
+  right: unset;
+  bottom: unset;
+  background: #fff;
+}
+
+.react-tabs__tab-list {
+  border-bottom: unset;
+  margin: 0 0 10px;
+  padding: 0;
 }

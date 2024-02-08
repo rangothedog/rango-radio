@@ -62,6 +62,7 @@
         "facebook": "https://www.facebook.com/rangomusic",
         "twitter": "https://twitter.com/rangomusic",
         "instagram": "https://www.instagram.com/rangomusic/",
+        "soundcloud": "https://soundcloud.com/matthewmeadowsmusic",
         "youtube": "https://www.youtube.com/channel/UC9Q4",
         "city:" : "Seattle",
         "state" : "WA",
@@ -85,8 +86,7 @@
                 "download": "/download/rango/countrysong/countrysong/rango_country_song.mp3",
                 "spotify" : "https://open.spotify.com/track/0liZlm7UzSvv1CJEl2Xo2R?si=f78c64bef8c94757",
                 "amazon" : "https://www.amazon.com/music/player/albums/B0BPH8PP2Q?marketplaceId=ATVPDKIKX0DER&musicTerritory=US",
-                "apple" : "https://music.apple.com/us/album/country-song/1658698617?i=1658698618",
-                "playlist" : "https://open.spotify.com/playlist/03ZL6sTUJK2M77dQv1eWF4?si=0dd17d816bcb427b"
+                "apple" : "https://music.apple.com/us/album/country-song/1658698617?i=1658698618"
             }]
         }]
     }]
