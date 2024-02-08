@@ -83,45 +83,43 @@ export function Audio(props: AudioProps) {
       console.log("Audio.useEffect.audioContext.resume", audioContextRef.current);
     }
 
-    analyzerRef.current = audioContextRef.current?.createAnalyser();
+    analyzerRef.current = audioContextRef.current.createAnalyser();
     console.log("Audio.useEffect.analyzer", analyzerRef.current);
     if (!analyzerRef.current) {
       return;
     }
     
     if (mediaRef.current == null) {
-      console.log("Audio.useEffect.audioElement", audioElement);
-
       mediaRef.current = audioContextRef.current.createMediaElementSource(audioElement);
-      
       console.log("Audio.useEffect.mediaRef", mediaRef.current);          
-      if (mediaRef.current) {
-        mediaRef.current.connect(analyzerRef.current);
-        analyzerRef.current.connect(audioContextRef.current.destination);    
-      }
     }
 
-    const canvas = canvasRef.current;
-    console.log("Audio.useEffect.canvas", canvas);
-    if (!canvas) {
-      return;  
+    if (mediaRef.current) {
+      mediaRef.current.connect(analyzerRef.current);
+      analyzerRef.current.connect(audioContextRef.current.destination);    
     }
-
-    const canvasCtx = canvas.getContext('2d');
-    console.log("Audio.useEffect.canvasCtx", canvasCtx);
-    if (!canvasCtx) {
-      return;
-    }
-
-    const bufferLength = analyzerRef.current.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
-
 
     const draw = () => {
-      requestAnimationFrame(draw);
-      if (!analyzerRef.current) {
+      const canvas = canvasRef.current;      
+      if (!canvas) {
+        return;  
+      }
+  
+      const canvasCtx = canvas.getContext('2d');    
+      if (!canvasCtx) {
+        return;
+      }
+
+      if (!analyzerRef.current) {      
         return; 
       }
+
+      const bufferLength = analyzerRef.current.frequencyBinCount;
+      
+      requestAnimationFrame(draw);
+
+      const dataArray = new Uint8Array(bufferLength);
+
       analyzerRef.current.getByteFrequencyData(dataArray);
   
       canvasCtx.fillStyle = 'rgb(0, 0, 0)';
@@ -133,7 +131,6 @@ export function Audio(props: AudioProps) {
 
       for (let i = 0; i < bufferLength; i++) {
         barHeight = dataArray[i];
-
         canvasCtx.fillStyle = `rgb(${barHeight + 100},50,50)`;
         canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
 

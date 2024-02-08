@@ -1,7 +1,6 @@
-import React, {useEffect, useLayoutEffect, useState, useRef} from 'react';
+import React, {useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import banner from './img/rango-radio-banner.png';
 import cover from './img/artist/rango/countrysong/rango_country_song.jpg';
 import microphone from './img/microphone-large.png';
 import { Audio } from './components/Audio/Audio.tsx';
@@ -13,24 +12,14 @@ import styles from './App.css';
 console.log("config", config);
 console.log("styles", styles);
 const active = config.sites.filter(site => site.active)[0];
-const clientId = active ? active.soundcloud_client_id : null;
 console.log("active", active);
-const shows = active && active.length > 0 ? active[0].shows : null;
 const showUrl = "https://soundcloud.com/matthewmeadowsmusic/rango-unmuzzled-31-the-fail";
 const videoUrl = "https://www.youtube.com/watch?v=L4FjzrYCLQY";
-
-const artist = "Rango";
-const songTitle = "Country Song";
-const stream = "http://localhost:3001/stream/rango/countrysong/countrysong/rango_country_song.mp3";
 
 const server = config.server.protocol + "://" + config.server.host + ":" + config.server.port;
 console.log("server", server);
 
 function App() {
-  const audioRef = useRef(null);
-  const soundCloudRef = useRef(null);
-  const youtubeRef = useRef(null);
-
   const [featuredArtists, setFeaturedArtists] = useState(null);
   const [featuredArtist, setFeaturedArtist] = useState(null);
   const [featuredArtistIndex, setFeaturedArtistIndex] = useState(0);
@@ -99,9 +88,6 @@ function App() {
                   setSelectedTrack(track);
                   console.log("App.setSelectedTrack", track);
                   if (track) {
-                    //if (audioRef && audioRef.current) {
-                    //  audioRef.current.setTrack(track);
-                    //}
                     if (tracks && tracks.length > 0) {
                       const trackIndex = tracks.indexOf(track);
                       console.log("App.setSelectedTrackIndex", trackIndex);
@@ -122,28 +108,23 @@ function App() {
   }
 
   useEffect(() => {
-
     console.log("App.useEffect");
-    
-  }, [featuredArtists]);
-
-  useLayoutEffect(() => {
-    console.log("App.useLayoutEffect");
     loadFeaturedArtists();
-  }, [featuredArtists]);
+  }, [featuredArtists, loadFeaturedArtists]);
 
   return (
     <div className="app">
       <div className="app-header">
         <h1>{active.title}</h1>
-          <a
-            className="app-link"
-            href="https://www/rangoradio.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            The Dog House
-          </a>        
+        <img src={microphone} className="app-microphone" alt="microphone" />
+        <a
+          className="app-link"
+          href="https://www/rangoradio.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          The Dog House
+        </a>
       </div>
       <div className="app-main">
         <Tabs>

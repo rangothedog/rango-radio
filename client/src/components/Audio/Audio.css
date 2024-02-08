@@ -26,26 +26,25 @@
 }
 
 .audio-player-track-row {
-    /*display: flex;*/
-    flex: 1;
-  }
+  /*display: flex;*/
+  flex: 1;
+}
 
-  .audio-player-track-col {
-    flex: 1;        
-  }
-*/
+.audio-player-track-col {
+  flex: 1;        
+}
 
 .audio-player-canvas {
-    border: 1px solid green;
-    width: 640px;
-    height: 150px;
-    background-color: black;
+  width: 100%;
+  height: 320px;
+  background-color: black;
 }
 
 .audio-player-canvas canvas {    
     border: 1px solid red;
-    width: 640px;
-    height: 150px;  
+    width: 100%;
+    height: 100%;
+    background-color: black;
 }
 
 .audio-player-button {    
