@@ -12,42 +12,6 @@
             "origin": ["http://localhost:3000", "http://rangoradio.com"],
             "allowedMethods": ["GET", "POST", "PUT", "DELETE"],
             "allowedHeaders": ["Content-Type", "Authorization"]
-        },
-        "api": {
-            "version": "1.0.0",
-            "base": "/api",
-            "routes": [
-                {
-                    "path": "/",
-                    "method": "GET",
-                    "handler": "getApiInfo"
-                },
-                {
-                    "path": "/songs",
-                    "method": "GET",
-                    "handler": "getSongs"
-                },
-                {
-                    "path": "/songs/:id",
-                    "method": "GET",
-                    "handler": "getSong"
-                },
-                {
-                    "path": "/songs",
-                    "method": "POST",
-                    "handler": "createSong"
-                },
-                {
-                    "path": "/songs/:id",
-                    "method": "PUT",
-                    "handler": "updateSong"
-                },
-                {
-                    "path": "/songs/:id",
-                    "method": "DELETE",
-                    "handler": "deleteSong"
-                }
-            ]
         }
     },
     
@@ -55,15 +19,19 @@
         "id": 1,
         "name": "Rango",
         "path": "rango",
-        "bio": "Rango is a technology mashup artist on the fringes of the Emerald City of Seattle.",
+        "bio": "Rango is a technology mashup artist on the fringes of the Emerald City of Seattle.  Rock, metal, blues and love songs.  Featuring tracks from producer Stuart Epps.",
         "image": "/images/rango/rango.jpg",
         "featured": true,
         "email": "mbmeadows@gmail.com",
-        "facebook": "https://www.facebook.com/rangomusic",
-        "twitter": "https://twitter.com/rangomusic",
-        "instagram": "https://www.instagram.com/rangomusic/",
-        "soundcloud": "https://soundcloud.com/matthewmeadowsmusic",
-        "youtube": "https://www.youtube.com/channel/UC9Q4",
+        "facebook_profile": "https://www.facebook.com/RangoCommand",
+        "twitter_profile": "https://twitter.com/matthew_meadows",
+        "instagram_profile": "https://www.instagram.com/rangothedog/",
+        "soundcloud_profile": "https://soundcloud.com/matthewmeadowsmusic",
+        "spotify_profile": "https://open.spotify.com/artist/6DqROKwFm3E8FfZorVkffN?si=bHmTdgGoTbK4qZl6L0I20g",
+        "youtube_profile": "https://www.youtube.com/channel/UC9Q4",
+        "soundcloud_playlist": "https://soundcloud.com/matthewmeadowsmusic/sets/rango-unmuzzled",
+        "spotify_playlist": "https://open.spotify.com/playlist/03ZL6sTUJK2M77dQv1eWF4?si=fdd6ea2f56834f23",
+        "youtube_playlist": "https://www.youtube.com/playlist?list=PL637FD6D85813D0B9",
         "city:" : "Seattle",
         "state" : "WA",
         "country" : "USA",
@@ -71,22 +39,44 @@
             "id": 1,
             "title": "Country Song",
             "path": "countrysong",
-            "date": "12/07/2022",
-            "cover": "/images/rango/countrysong/rango_country_song.jpg",
+            "date": "01/24/2024",
+            "cover": "/image/rango/countrysong/countrysong/rango_country_song.jpg",
             "genre": "Rock",
             "tracks": [{
                 "id": 1,    
                 "title": "Country Song",
                 "path": "countrysong",
-                "date": "12/07/2022",
+                "date": "01/24/2024",
                 "genre": "Rock",
                 "duration": "00:05:01",
                 "image": "/image/rango/countrysong/countrysong/rango_country_song.jpg",
                 "stream": "/stream/rango/countrysong/countrysong/rango_country_song.mp3",
                 "download": "/download/rango/countrysong/countrysong/rango_country_song.mp3",
-                "spotify" : "https://open.spotify.com/track/0liZlm7UzSvv1CJEl2Xo2R?si=f78c64bef8c94757",
-                "amazon" : "https://www.amazon.com/music/player/albums/B0BPH8PP2Q?marketplaceId=ATVPDKIKX0DER&musicTerritory=US",
-                "apple" : "https://music.apple.com/us/album/country-song/1658698617?i=1658698618"
+                "spotify" : "https://open.spotify.com/track/4OCC22zmfFm1C97DqQazOj?si=2a477e650a214ed8",
+                "amazon" : "https://www.amazon.com/music/player/albums/B0CTCVQM7K",
+                "apple" : "https://music.apple.com/us/album/country-song/1727689093?i=1727689094"
+            }]
+        },
+        {
+            "id": 2,
+            "title": "Lens of Time",
+            "path": "lensoftime",
+            "date": "01/24/2024",
+            "cover": "/image/rango/lensoftime/lensoftime/rango_lensoftime.jpg",
+            "genre": "Rock",
+            "tracks": [{
+                "id": 1,    
+                "title": "Lens of Time",
+                "path": "lensoftime",
+                "date": "01/24/2024",
+                "genre": "Rock",
+                "duration": "00:05:01",
+                "image": "/image/rango/lensoftime/lensoftime/rango_lensoftime.jpg",
+                "stream": "/stream/rango/lensoftime/lensoftime/rango_lensoftime.mp3",
+                "download": "/download/rango/lensoftime/lensoftime/rango_lensoftime.mp3",
+                "spotify" : "https://open.spotify.com/track/4OCC22zmfFm1C97DqQazOj?si=2a477e650a214ed8",
+                "amazon" : "https://www.amazon.com/music/player/albums/B0CTCVQM7K",
+                "apple" : "https://music.apple.com/us/album/country-song/1727689093?i=1727689094"
             }]
         }]
     }]

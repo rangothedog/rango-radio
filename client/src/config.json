@@ -9,27 +9,7 @@
             "name": "Rango",
             "email": "mbmeadows@gmail.com"
         },
-        "host": "http://localhost:3000",
-        "soundcloud_client_id": "Iy5e1Ri4GTNgrafaXe4mLpmJLXbXEfBR",
-        "social": {
-            "facebook": "https://www.facebook.com/rangounchained",
-            "twitter": "https://twitter.com/rangounchained",
-            "instagram": "https://www.instagram.com/rangounchained/",
-            "youtube": "https://www.youtube.com/channel/UC9QX2ZQ8Z4ZqZQX6ZQX6ZQX6"
-        },
-        "images" : {
-            "logo": "https://rango-radio.s3.amazonaws.com/rango-radio-logo.png",
-            "banner": "https://rango-radio.s3.amazonaws.com/rango-radio-banner.png",
-            "left_speaker": "https://rango-radio.s3.amazonaws.com/rango-radio-left-speaker.png",
-            "right_speaker": "https://rango-radio.s3.amazonaws.com/rango-radio-right-speaker.png",
-            "background": "https://rango-radio.s3.amazonaws.com/rango-radio-background.png",
-            "background_mobile": "https://rango-radio.s3.amazonaws.com/rango-radio-background-mobile.png",
-            "play_button": "https://rango-radio.s3.amazonaws.com/rango-radio-play-button.png",
-            "pause_button": "https://rango-radio.s3.amazonaws.com/rango-radio-pause-button.png",
-            "hamburger_menu": "https://rango-radio.s3.amazonaws.com/rango-radio-hamburger-menu.png",
-            "close_button": "https://rango-radio.s3.amazonaws.com/rango-radio-close-button.png",
-            "open_button": "https://rango-radio.s3.amazonaws.com/rango-radio-open-button.png"
-        }
+        "host": "http://localhost:3000"
     }],
     "server": {
         "name": "rango-radio",

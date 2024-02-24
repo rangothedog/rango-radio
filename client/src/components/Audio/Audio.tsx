@@ -55,12 +55,11 @@ export function Audio(props: AudioProps) {
     console.log("Audio.useEffect.player", playerRef.current)
     
     const selectedTrack = tracks && tracks.length ? tracks[trackIndex] : null;    
+    console.log("Audio.useEffect.selectedTrack", selectedTrack);
     if (!selectedTrack) {
-      console.log("Audio.useEffect.selectedTrack", selectedTrack);
       return;
     }
-    
-    console.log("Audio.useEffect.selectedTrack", selectedTrack);
+        
     setStreamUrl(server + (selectedTrack as any)?.stream ?? "");
     setImageUrl(server + (selectedTrack as any)?.image ?? ""); 
     setTrack(selectedTrack);        

@@ -8,22 +8,11 @@
   width: 100%;
 }
 
-.app-logo {
-  height: 120px;
-  pointer-events: none;
-  position: relative;
-  left: -15px;  
-  margin-left: 10px;  
-  margin-top: 20px;
-}
-
 .app-microphone {
-  height: 75px;
+  height: 80px;
   pointer-events: none;
   position: relative;
-  margin-bottom: 80px;
-  margin-left: 10px;
-  margin-top: 20px;
+  margin: 10px;
 }
 
 .app-logo-frame {
@@ -44,11 +33,24 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 75px;
+  height: 100px;
   margin-top: 0;
   color: white;
   overflow: hidden;
   background-color: #040A0A;
+}
+
+.app-header div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center; 
+}
+
+.app-footer a {
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 .app-link {
@@ -58,42 +60,56 @@
 .app-main {
   border: 1px solid red;
   position:absolute; 
-  top:75px;
+  top:100px;
   bottom:50px;
-  overflow:auto;
+  width: 100%;
+  min-width: 640px;
   background-color: #040A0A; 
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-image: url("./img/stage1-large.jpg");
-  padding: 30px 100px;
+  background-image: url("./img/stage1-large-wide-short.jpg");
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-tabs{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  height: 40px;
+}
+
+.app-tabs button {
+  margin: 0 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #040A0A;
+  color: #FDFDFD;
+  border: 1px solid #FDFDFD;
 }
 
 .app-footer {
-
   position: absolute;
   height: 50px;
-  background-color: grey;
+  background-color: #040A0A;
   bottom: 0px;
   left: 0px;
   right: 0px;
   margin-bottom: 0px;
 }
 
-/*
-@keyframes app-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-*/
-
-.app-stage {
-  width: 1200px;
+.app-stage {  
   margin-bottom: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .app-stage-title {
@@ -131,29 +147,26 @@
 }
 
 .app-stage-content {
-  width: 80%;
-  margin: 1% auto;
 }
 
 .app-soundcloud {
-  width: 80%;
-  margin: 10% auto;
 }
 
 .app-youtube {
-  width: 80%;
-  margin: 10% auto;
 }
 
 .app-audio {
+  /*
   width: 80%;
   margin: 10% auto;
+  */
 }
 
 .app-button-container {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   height: 100vh;
 }
 
@@ -165,7 +178,7 @@
 
 .react-tabs__tab {  
   padding: 2px 12px;  
-  height: 48px;
+  height: 40px;
 }
 .react-tabs__tab--selected {
   border-radius: 5px 5px;

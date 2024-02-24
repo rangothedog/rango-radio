@@ -11,13 +11,15 @@ import styles from './App.css';
 
 console.log("config", config);
 console.log("styles", styles);
+
 const active = config.sites.filter(site => site.active)[0];
 console.log("active", active);
-const showUrl = "https://soundcloud.com/matthewmeadowsmusic/rango-unmuzzled-31-the-fail";
-const videoUrl = "https://www.youtube.com/watch?v=L4FjzrYCLQY";
 
 const server = config.server.protocol + "://" + config.server.host + ":" + config.server.port;
 console.log("server", server);
+
+const titles = active.title.split(" ");
+console.log("titles", titles);
 
 function App() {
   const [featuredArtists, setFeaturedArtists] = useState(null);
@@ -44,15 +46,15 @@ function App() {
   function loadFeaturedArtists() {
     if (loading) {
       const featuredUrl = server + "/featured";
-      console.log("featured url", featuredUrl);
+      console.log("App.featured url", featuredUrl);
 
       fetch(featuredUrl)
         .then((response) => {
-          console.log("featured response", response);
+          console.log("App.featured response", response);
           return response.clone().json();
         })
         .then((featured) => {
-          console.log("featured data 1", featured);
+          console.log("App.featured data", featured);
           setFeaturedArtists(featured);
           console.log("App.setFeturedArtists", featured);
 
@@ -115,35 +117,38 @@ function App() {
   return (
     <div className="app">
       <div className="app-header">
-        <h1>{active.title}</h1>
-        <img src={microphone} className="app-microphone" alt="microphone" />
-        <a
-          className="app-link"
-          href="https://www/rangoradio.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          The Dog House
-        </a>
+        <div>
+          <h1>{titles.length > 0 ? titles[0]: ""}</h1>
+          <img src={microphone} className="app-microphone" alt="microphone" />
+          <h1>{titles.length > 1 ? titles[1]: ""}</h1>
+        </div>
       </div>
       <div className="app-main">
+        <div className="app-tabs">
+          <button className="app-stage-title">Artist</button>
+          <button className="app-stage-title">Listen</button>
+          <button className="app-stage-title">Soundcloud</button>
+          <button className="app-stage-title">YouTube</button>
+          <button className="app-stage-title">Gallery</button>
+        </div>
         <Tabs>
           <TabList>
             <Tab><div className="app-stage-title">Artist</div></Tab>
             <Tab><div className="app-stage-title">Listen</div></Tab>
             <Tab><div className="app-stage-title">Soundcloud</div></Tab>
             <Tab><div className="app-stage-title">YouTube</div></Tab>
+            <Tab><div className="app-stage-title">Gallery</div></Tab>
           </TabList>
           <TabPanel>
             <div className="app-stage app-stage-1">
               <div className="app-stage-content app-stage-artist">
-              <img src={cover} className="app-stage-image" alt="Rango" /> 
+              <img src={cover} className="app-stage-image" alt="Rango" />
               </div>
             </div>
           </TabPanel>
           <TabPanel>
             <div className="app-stage app-stage-2">
-              <div className="app-stage-content app-stage-audio">            
+              <div className="app-stage-content app-stage-audio">
                 <Audio
                   artist={featuredArtist}
                   tracks={tracks}
@@ -155,21 +160,21 @@ function App() {
           </TabPanel>
         
           <TabPanel>
-            <div className="app-stage app-stage-3">          
+            <div className="app-stage app-stage-3">
               <div className="app-stage-content app-stage-soundcloud">
-                <Soundcloud              
-                  url={showUrl}              
-                  onPlaybackChange={soundcloudPlaybackChange}            
+                <Soundcloud
+                  url={featuredArtist ? featuredArtist.soundcloud_playlist : ""}           
+                  onPlaybackChange={soundcloudPlaybackChange}
                 />
               </div>
             </div>
           </TabPanel>
 
           <TabPanel>
-            <div className="app-stage app-stage-4">            
+            <div className="app-stage app-stage-4">
               <div className="app-stage-content app-stage-youtube">
-                <Youtube className="app-youtube"              
-                  url={videoUrl}              
+                <Youtube className="app-youtube"
+                  url={featuredArtist? featuredArtist.youtube_playlist : ""}
                   onPlaybackChange={youtubePlaybackChange}
                 />
               </div>
@@ -177,11 +182,16 @@ function App() {
           </TabPanel>
         </Tabs>  
       </div>      
-      <div className="app-footer">
-        Footer
-        <div>{error}</div>
-      </div>
-      
+      <div className="app-footer">        
+        <div>
+          {error}
+          <span>
+            <a className="app-link" href="https://www/rangothedog.com" target="_blank" rel="noopener noreferrer">
+              rangothedog.com
+            </a>
+          </span>
+          </div>
+      </div>      
     </div>
   );
 }
