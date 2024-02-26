@@ -26,9 +26,6 @@ function App() {
   const [featuredArtists, setFeaturedArtists] = useState(null);
   const [featuredArtist, setFeaturedArtist] = useState(null);
   const [featuredArtistIndex, setFeaturedArtistIndex] = useState(0);
-  const [tracks, setTracks] = useState(null);
-  const [selectedTrack, setSelectedTrack] = useState(null);
-  const [selectedTrackIndex, setSelectedTrackIndex] = useState(-1);  
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -107,10 +104,11 @@ function App() {
           </TabList>
           <TabPanel>
             <div className="app-stage app-stage-1">
-              <div className="app-stage-content app-stage-artist">
-                {/*
-                <Artist artist={featuredArtist} />              
-                */}
+              <div className="app-stage-content app-stage-artist">                
+                <Artist 
+                  artist={featuredArtist}
+                  server={server}
+                />
               </div>
             </div>
           </TabPanel>
@@ -118,7 +116,7 @@ function App() {
             <div className="app-stage app-stage-2">
               <div className="app-stage-content app-stage-audio">
                 <Audio
-                  artist={featuredArtist}                  
+                  artist={featuredArtist}
                   server={server}
                   onPlaybackChange={audioPlaybackChange}
                 />                        
@@ -144,6 +142,18 @@ function App() {
                   url={featuredArtist? featuredArtist.youtube_playlist : ""}
                   onPlaybackChange={youtubePlaybackChange}
                 />
+              </div>
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="app-stage app-stage-5">
+              <div className="app-stage-content app-stage-gallery">
+                {/*
+                <Gallery className="app-gallery"
+                  artist={featuredArtist}
+                  server={server}                
+                />
+                */}
               </div>
             </div>
           </TabPanel>

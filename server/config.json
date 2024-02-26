@@ -20,7 +20,7 @@
         "name": "Rango",
         "path": "rango",
         "bio": "Rango is a technology mashup artist on the fringes of the Emerald City of Seattle.  Rock, metal, blues and love songs.  Featuring tracks from producer Stuart Epps.",
-        "image": "/images/rango/rango.jpg",
+        "image": "/image/rango/rango.jpg",
         "featured": true,
         "email": "mbmeadows@gmail.com",
         "facebook_profile": "https://www.facebook.com/RangoCommand",
@@ -32,9 +32,12 @@
         "soundcloud_playlist": "https://soundcloud.com/matthewmeadowsmusic/sets/rango-unmuzzled",
         "spotify_playlist": "https://open.spotify.com/playlist/03ZL6sTUJK2M77dQv1eWF4?si=fdd6ea2f56834f23",
         "youtube_playlist": "https://www.youtube.com/playlist?list=PL637FD6D85813D0B9",
-        "city:" : "Seattle",
+        "city" : "Seattle",
         "state" : "WA",
         "country" : "USA",
+        "gallery": [
+            "/image/rango/gallery/The Ringmaster Wide.jpg"
+        ],
         "albums": [{
             "id": 1,
             "title": "Country Song",

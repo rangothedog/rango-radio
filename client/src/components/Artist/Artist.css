@@ -1,3 +1,54 @@
-.Artist {
-  
+@import '~react-image-gallery/styles/css/image-gallery.css';
+
+.artist {
+  overflow: hidden;  
+  font-size: 20px;
+  height: 25px;
+  padding: 5px 10px;
+  color: #FDFDFD;
+}
+
+.artist-header {
+    display: flex;
+    flex-wrap: wrap;
+    /*align-items: center;
+    justify-content: center;
+    */
+    color: #FDFDFD;
+}
+
+.artist-header img {
+    flex: 1;
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+.artist-header div {
+    flex: 1;
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+
+.artist-location {
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+}
+
+.artist-location h3, h2 {
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+.artist-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;    
+}
+
+.artist-links a {
+    margin: 10px;
+    padding: 10px 20px;
 }
