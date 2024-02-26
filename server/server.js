@@ -4,13 +4,14 @@ const fs = require("fs");
 const cors = require("cors");
 
 const Config = require("./config");
-const config = new Config("./config.json").read();
+const config = new Config("./config.json");
+let schema = config.read();
 
-const name = config.server.name;
-const port = config.server.port;
-const description = config.server.description;
+const name = schema.server.name;
+const port = schema.server.port;
+const description = schema.server.description;
 
-let path = config.server.contentDirectory;
+let path = schema.server.contentDirectory;
 if (!path.startsWith("/")) { 
   path = "/" + path;
 }
@@ -25,9 +26,9 @@ const content = __dirname + path;
 console.log("content", content);
 app.use(path, express.static(content));
 
-if (config.server.cors.enabled) {
+if (schema.server.cors.enabled) {
   const corsOptions = {
-    origin: config.server.cors.origin,
+    origin: schema.server.cors.origin,
   };
   app.use(cors(corsOptions));
   console.log("cors enabled", corsOptions);
@@ -40,54 +41,43 @@ app.get("/", (req, res) => {
   res.send(`${name}:${port} ${description}`);
 });
 
-/***
-app.get("/schema", (req, res) => {
-  res.json(config.read());
+app.get('/image/:artist/:filename', (req, res) => {  
+  const file = content + req.path.replace("/image/", "");
+  fs.exists(file, (exists) => {
+    if (exists) {
+      console.log("image", file)
+      res.sendFile(file);
+    } else {
+      console.log("image", "Error: 404", file);
+      res.status(404).send('Error: 404');
+      res.end();    
+    }
+  });
 });
 
-app.get("/active", (req, res) => {
-  config.read();
-  res.json(config.active());
-});
-
-app.get("/shows", (req, res) => {
-  config.read();
-  res.json(config.active().shows);
-});
-
-app.get("/owner", (req, res) => {
-  config.read();
-  res.json(config.active().owner);
-});
-
-***/
-
-app.get('/image/:artist/:filename', (req, res) => {
-  const filename = req.path.replace("/image/", "");
-  const file = content + filename;
-  console.log("image", file)
-  res.sendFile(file);
-});
-
-app.get('/image/:artist/:album/:track/:filename', (req, res) => {
-  const filename = req.path.replace("/image/", "");
-  const file = content + filename;
-  console.log("image", file)
-  res.sendFile(file);
+app.get('/image/:artist/:album/:track/:filename', (req, res) => {  
+  const file = content + req.path.replace("/image/", "");
+  fs.exists(file, (exists) => {
+    if (exists) {
+      console.log("image", file)
+      res.sendFile(file);
+    } else {
+      console.log("image", "Error: 404", file);
+      res.status(404).send('Error: 404');
+      res.end();
+    }
+  });
 });
 
 app.get('/stream/:artist/:album/:track/:filename', (req, res) => {
-  const filename = req.path.replace("/stream/", "");
-  console.log("stream2", filename)
-  const file = content + filename;
-  console.log("stream3", file);
+  const file = content + req.path.replace("/stream/", "");
   fs.exists(file, (exists) => {
     if (exists) {
-      console.log("stream4", file);
-
+      console.log("stream", file);
       const rstream = fs.createReadStream(file);
       rstream.pipe(res);
     } else {
+      console.log("stream", "Error: 404", file);
       res.status(404).send('Error: 404');
       res.end();
     }
@@ -95,14 +85,13 @@ app.get('/stream/:artist/:album/:track/:filename', (req, res) => {
 });
 
 app.get('/download/:artist/:album/:track/:filename', (req, res) => {
-  const filename = req.path.replace("/download/", "");
-  const file = content + filename;
-  console.log("download", file);
+  const file = content + req.path.replace("/download/", "");
   fs.exists(file, (exists) => {
     if (exists) {
+        console.log("download", file);
         res.download(file);
-    }
-    else {
+    } else {
+      console.log("download", "Error: 404", file);
       res.status(404).send('Error: 404');
       res.end();      
     }
@@ -110,14 +99,14 @@ app.get('/download/:artist/:album/:track/:filename', (req, res) => {
 });
 
 app.get('/artists/', (req, res) => {
-  const artists = config.artists
-  console.log("artists", artists);
+  let schema = config.read();  
+  console.log("artists", schema.artists);
   res.json(artists);
 });
 
 app.get('/featured/', (req, res) => {
-  const artists = config.artists
-  const featured = artists.filter(artist => artist.featured);
+  let schema = config.read();  
+  const featured = schema.artists.filter(artist => artist.featured);
   console.log("featured", featured);
   res.json(featured);
 });
@@ -125,13 +114,14 @@ app.get('/featured/', (req, res) => {
 app.get('/artist/:artistId', (req, res) => {
   const artistId = req.path.replace("/artist/", "");
   console.log("artistId", artistId);
-  const artists = config.artists.filter(artist => artist.id == artistId);  
+  let schema = config.read();
+  const artists = schema.artists.filter(artist => artist.id == artistId);  
   if (artists.length > 0) {
     const artist = artists[0];
     console.log("artist", artist);
     res.json(artist);
-  }
-  else {
+  } else {
+    console.log("artist", "Error: 404", artistId);
     res.status(404).send('Error: 404');
     res.end();      
   }
@@ -140,14 +130,15 @@ app.get('/artist/:artistId', (req, res) => {
 app.get('/albums/:artistId', (req, res) => {
   const artistId = req.path.replace("/albums/", "");
   console.log("artistId", artistId);
-  const artists = config.artists.filter(artist => artist.id == artistId);    
+  let schema = config.read();
+  const artists = schema.artists.filter(artist => artist.id == artistId);    
   if (artists.length > 0) {
     const artist = artists[0];
     const albums = artist.albums;
     console.log("albums", albums);
     res.json(artist);
-  }
-  else {
+  } else {
+    console.log("albums", "Error: 404", artistId);
     res.status(404).send('Error: 404');
     res.end();      
   }
@@ -156,7 +147,8 @@ app.get('/albums/:artistId', (req, res) => {
 app.get('/tracks/:artistId', (req, res) => {
   const artistId = req.path.replace("/tracks/", "");
   console.log("artistId", artistId);
-  const artists = config.artists.filter(artist => artist.id == artistId);    
+  let schema = config.read();
+  const artists = schema.artists.filter(artist => artist.id == artistId);
   const tracks = [];
   if (artists.length > 0) {
     const artist = artists[0];
@@ -167,13 +159,21 @@ app.get('/tracks/:artistId', (req, res) => {
     }
     console.log("tracks", tracks);
     res.json(tracks);
-  }
-  else {
+  } else {
+    console.log("tracks", "Error: 404", artistId);
     res.status(404).send('Error: 404');
     res.end();      
   }
 });
 
-app.listen(port, () => {
-  console.log(`${name}:${port} ${description}`);
+const server = app.listen(port, () => {
+  const now = new Date();
+  console.log(`${name}:${port} ${description} started at ${now}.`);
+});
+
+process.on('SIGINT', function() {
+  server.close();
+  const now = new Date();
+  console.log(`${name}:${port} ${description} stopped at ${now}.`);
+  process.exit(0);
 });

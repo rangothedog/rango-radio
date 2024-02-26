@@ -7,7 +7,6 @@ import styles from './Audio.css';
 
 export interface AudioProps {
   artist?: any;
-  tracks?: any[];
   server?: string;
   onPlaybackChange?: (isPlaying: boolean, player:any) => void;
 }
@@ -21,12 +20,13 @@ export function Audio(props: AudioProps) {
   const analyzerRef = useRef<AnalyserNode | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const mediaRef = useRef<MediaElementAudioSourceNode | null>(null);
-  const playerRef = useRef(null);  
+  const playerRef = useRef<AudioPlayer | null>(null);  
 
-  const { artist, tracks, server, onPlaybackChange } = props; 
-  const [isPlaying, setIsPlaying] = useState(false);  
-  const [trackIndex, setTrackIndex] = useState(0);  
-  const [track, setTrack] = useState(null);
+  const { artist, server, onPlaybackChange } = props;
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [tracks, setTracks] = useState(Array<any>);
+  const [selectedTrack, setSelectedTrack] = useState(null);
+  const [selectedTrackIndex, setSelectedTrackIndex] = useState(-1);
   const [streamUrl, setStreamUrl] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
 
@@ -34,7 +34,7 @@ export function Audio(props: AudioProps) {
   function handlePlay() {
     console.log("Audio.Play", playerRef.current);
     setIsPlaying(true);
-    if (playerRef && playerRef.current) {            
+    if (playerRef && playerRef.current) {
       if (onPlaybackChange) {
         onPlaybackChange(true, playerRef.current);
       }
@@ -51,19 +51,59 @@ export function Audio(props: AudioProps) {
     }     
   }
 
+  function clickPrevious() {
+    if (selectedTrackIndex > 0) {
+      console.log("Audio.clickPrevious", selectedTrackIndex);
+      setSelectedTrackIndex(selectedTrackIndex - 1);
+    }
+  }
+
+  function clickNext() {    
+    if (selectedTrackIndex < tracks.length - 1) {
+      console.log("Audio.clickNext", selectedTrackIndex);
+      setSelectedTrackIndex(selectedTrackIndex + 1);
+    }
+  
+  }
   useEffect(() => {
     console.log("Audio.useEffect.player", playerRef.current)
-    
-    const selectedTrack = tracks && tracks.length ? tracks[trackIndex] : null;    
-    if (!selectedTrack) {
-      console.log("Audio.useEffect.selectedTrack", selectedTrack);
-      return;
+
+    const albums = artist.albums;   
+
+    if (albums && albums.length > 0) {
+      const tracks: any[] =  [];
+      albums.forEach(album => {         
+        album.tracks.forEach(track => {
+          tracks.push(track);
+        });
+      });
+      setTracks(tracks);
+      console.log("App.setTracks", tracks);
+
+      if (tracks && tracks.length > 0) {
+        const track = tracks[0];
+        console.log("track", track);
+        setSelectedTrack(track);
+        console.log("App.setSelectedTrack", track);
+        if (track) {
+          if (tracks && tracks.length > 0) {
+            const trackIndex = tracks.indexOf(track);
+            console.log("App.setSelectedTrackIndex", trackIndex);
+            setSelectedTrackIndex(trackIndex);
+          }
+        }
+      }
     }
     
+    const selectedTrack = tracks && tracks.length ? tracks[selectedTrackIndex] : null;    
     console.log("Audio.useEffect.selectedTrack", selectedTrack);
+    if (!selectedTrack) {
+      return;
+    }
+        
     setStreamUrl(server + (selectedTrack as any)?.stream ?? "");
     setImageUrl(server + (selectedTrack as any)?.image ?? ""); 
-    setTrack(selectedTrack);        
+    setSelectedTrack(selectedTrack);        
 
     const audioElement = (playerRef.current as any).audio.current as HTMLAudioElement | null;
     console.log("Audio.useEffect.audioElement", audioElement);
@@ -139,7 +179,7 @@ export function Audio(props: AudioProps) {
     };
 
     draw();
-  }, [track, tracks, trackIndex, isPlaying]);
+  }, [artist, selectedTrackIndex, isPlaying]);
   
   
   return <div className="audio-player">
@@ -153,21 +193,21 @@ export function Audio(props: AudioProps) {
       <div className="audio-player-track-right">
           <div className="audio-player-track-row">
             <div className="audio-player-track-col audio-player-artist">{artist?.name}</div>
-            <div className="audio-player-track-col audio-player-title">{(track as any)?.title}</div>
-            <div className="audio-player-track-col audio-player-date">{(track as any)?.date}</div>
+            <div className="audio-player-track-col audio-player-title">{(selectedTrack as any)?.title}</div>
+            <div className="audio-player-track-col audio-player-date">{(selectedTrack as any)?.date}</div>
             <div className="audio-player-track-col audio-player-urls">
               <div className="audio-player-track-col audio-player-track-url spotify">        
-                <a className="app-link" href={(track as any)?.spotify} target="_blank" rel="noopener noreferrer">
+                <a className="app-link" href={(selectedTrack as any)?.spotify} target="_blank" rel="noopener noreferrer">
                     Spotify
                   </a>
                 </div>
                 <div className="audio-player-track-col audio-player-track-url amazon">
-                  <a className="app-link" href={(track as any)?.amazon} target="_blank" rel="noopener noreferrer">
+                  <a className="app-link" href={(selectedTrack as any)?.amazon} target="_blank" rel="noopener noreferrer">
                     Amazon
                   </a>
                 </div>
                 <div className="audio-player-track-col audio-player-track-url apple">
-                  <a className="app-link" href={(track as any)?.apple} target="_blank" rel="noopener noreferrer">
+                  <a className="app-link" href={(selectedTrack as any)?.apple} target="_blank" rel="noopener noreferrer">
                     Apple
                   </a>
                 </div>
@@ -183,10 +223,12 @@ export function Audio(props: AudioProps) {
     </div>
     <AudioPlayer
       autoPlay={false}
+      autoPlayAfterSrcChange={false}
       src={streamUrl || ""}
       onPlay={handlePlay}
-      onPause={handlePause}
-      onEnded={e => setTrackIndex(trackIndex + 1)}
+      onPause={handlePause}      
+      onClickNext={clickNext}
+      onClickPrevious={clickPrevious}
       ref={playerRef}
       showSkipControls={true}
     />
