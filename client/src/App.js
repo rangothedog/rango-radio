@@ -1,11 +1,12 @@
 import React, {useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import cover from './img/artist/rango/countrysong/rango_country_song.jpg';
 import microphone from './img/microphone-large.png';
+import { Artist } from './components/Artist/Artist.tsx';
 import { Audio } from './components/Audio/Audio.tsx';
 import { Soundcloud } from './components/Soundcloud/Soundcloud.tsx';
 import { Youtube } from './components/Youtube/Youtube.tsx';
+import { Gallery } from './components/Gallery/Gallery.tsx';
 import config from './config.json';
 import styles from './App.css';
 
@@ -69,35 +70,7 @@ function App() {
                 const index = featured.indexOf(artist);
                 console.log("App.setFeturedArtistIndex", index);
                 setFeaturedArtistIndex(index);
-              }
-
-              const albums = artist.albums;
-
-              if (albums && albums.length > 0) {
-                const tracks = [];
-                albums.forEach((album) => {
-                  const albumTracks = album.tracks;
-                  albumTracks.forEach((track) => {
-                    tracks.push(track);
-                  });
-                });
-                setTracks(tracks);
-                console.log("App.setTracks", tracks);
-
-                if (tracks && tracks.length > 0) {
-                  const track = tracks[0];
-                  console.log("track", track);
-                  setSelectedTrack(track);
-                  console.log("App.setSelectedTrack", track);
-                  if (track) {
-                    if (tracks && tracks.length > 0) {
-                      const trackIndex = tracks.indexOf(track);
-                      console.log("App.setSelectedTrackIndex", trackIndex);
-                      setSelectedTrackIndex(trackIndex);
-                    }
-                  }
-                }
-              }
+              }              
             }
           }
           setLoading(false);
@@ -124,13 +97,6 @@ function App() {
         </div>
       </div>
       <div className="app-main">
-        <div className="app-tabs">
-          <button className="app-stage-title">Artist</button>
-          <button className="app-stage-title">Listen</button>
-          <button className="app-stage-title">Soundcloud</button>
-          <button className="app-stage-title">YouTube</button>
-          <button className="app-stage-title">Gallery</button>
-        </div>
         <Tabs>
           <TabList>
             <Tab><div className="app-stage-title">Artist</div></Tab>
@@ -142,7 +108,9 @@ function App() {
           <TabPanel>
             <div className="app-stage app-stage-1">
               <div className="app-stage-content app-stage-artist">
-              <img src={cover} className="app-stage-image" alt="Rango" />
+                {/*
+                <Artist artist={featuredArtist} />              
+                */}
               </div>
             </div>
           </TabPanel>
@@ -150,8 +118,7 @@ function App() {
             <div className="app-stage app-stage-2">
               <div className="app-stage-content app-stage-audio">
                 <Audio
-                  artist={featuredArtist}
-                  tracks={tracks}
+                  artist={featuredArtist}                  
                   server={server}
                   onPlaybackChange={audioPlaybackChange}
                 />                        

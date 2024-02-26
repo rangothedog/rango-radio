@@ -42,8 +42,10 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^18.2.45",
-    "@types/react-dom": "^18.2.18",
+    "@types/css-modules": "^1.0.5",
+    "@types/react": "^18.2.58",
+    "@types/react-dom": "^18.2.19",
+    "@types/webpack": "^5.28.5",
     "@types/webpack-env": "^1.18.4",
     "css-loader": "^6.8.1",
     "style-loader": "^3.3.3"

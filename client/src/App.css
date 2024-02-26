@@ -105,6 +105,7 @@
 }
 
 .app-stage {  
+  padding: 50px;
   margin-bottom: 100px;
   display: flex;
   flex-wrap: wrap;
@@ -116,6 +117,8 @@
   font-size: 30px;
   color: #FDFDFD;
   text-shadow: 2px 2px 4px #000000;
+  position: relative;
+  top: -4px;
 }
 
 .app-stage-1 {
@@ -142,8 +145,7 @@
 }
 
 .app-stage-image {
-  width: 80%;
-  margin: 10% auto;
+
 }
 
 .app-stage-content {
@@ -174,6 +176,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.react-tabs { 
+  position: absolute;
+  top: 30px;
+  height: 45px;
 }
 
 .react-tabs__tab {  
