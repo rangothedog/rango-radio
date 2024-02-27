@@ -28,7 +28,7 @@
 */
 
 .app-header {
-  border: 1px solid red;
+  border: 1px solid silver;
   position: absolute;
   top: 0;
   left: 0;
@@ -58,7 +58,6 @@
 }
 
 .app-main {
-  border: 1px solid red;
   position:absolute; 
   top:100px;
   bottom:50px;
