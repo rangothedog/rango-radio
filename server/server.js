@@ -55,6 +55,21 @@ app.get('/image/:artist/:filename', (req, res) => {
   });
 });
 
+app.get('/image/:artist/:gallery/:filename', (req, res) => {  
+  const file = content + req.path.replace("/image/", "");
+  fs.exists(file, (exists) => {
+    if (exists) {
+      console.log("image", file)
+      res.sendFile(file);
+    } else {
+      console.log("image", "Error: 404", file);
+      res.status(404).send('Error: 404');
+      res.end();
+    }
+  });
+});
+
+
 app.get('/image/:artist/:album/:track/:filename', (req, res) => {  
   const file = content + req.path.replace("/image/", "");
   fs.exists(file, (exists) => {
@@ -152,10 +167,10 @@ app.get('/tracks/:artistId', (req, res) => {
   const tracks = [];
   if (artists.length > 0) {
     const artist = artists[0];
-    const albums = artist.albums;
+    const albums = artist.albums;    
     if (albums.length > 0) {
       const album = albums[0];
-      tracks = album.tracks;
+      tracks = tracks.concat(album.tracks);
     }
     console.log("tracks", tracks);
     res.json(tracks);

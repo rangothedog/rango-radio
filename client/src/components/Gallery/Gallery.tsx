@@ -19,6 +19,7 @@ export function Gallery(props: GalleryProps) {
       thumbnail: server + image
     };
   });
+  console.log("Gallery.images", images);
 
   return (
     <div className="image-gallery-wrapper">
