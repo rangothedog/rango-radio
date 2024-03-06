@@ -29,7 +29,7 @@ export function Audio(props: AudioProps) {
   const [selectedTrackIndex, setSelectedTrackIndex] = useState(-1);
   const [streamUrl, setStreamUrl] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
-
+  const [sources, setSources] = useState(Array<React.JSX.Element>);
 
   function handlePlay() {
     console.log("Audio.Play", playerRef.current);
@@ -79,6 +79,11 @@ export function Audio(props: AudioProps) {
       });
       setTracks(tracks);
       console.log("App.setTracks", tracks);
+
+      const sources = tracks.map((track, index) => {
+        return <source key={index} src={server + track.stream} type="audio/mpeg" />;
+      });
+      setSources(sources)
 
       if (tracks && tracks.length > 0) {
         const track = tracks[0];
@@ -231,6 +236,8 @@ export function Audio(props: AudioProps) {
       onClickPrevious={clickPrevious}
       ref={playerRef}
       showSkipControls={true}
-    />
+    >
+      {sources}
+    </AudioPlayer>
   </div>;
 }
