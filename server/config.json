@@ -5,6 +5,7 @@
         "port": 3001,
         "host": "localhost",
         "contentDirectory": "audio",
+        "clientDirectory": "../client/build",
         "logDirectory": "./logs",
         "logLevel": "debug",
         "cors": {
@@ -36,14 +37,33 @@
         "state" : "WA",
         "country" : "USA",
         "gallery": [
-            "/image/rango/gallery/The Ringmaster Wide.jpg"
+            "/image/rango/gallery/BerlinWall.jpg",
+            "/image/rango/gallery/BrookMeadows.jpg",
+            "/image/rango/gallery/Circles.jpg",
+            "/image/rango/gallery/ConstantSorrow.jpg",
+            "/image/rango/gallery/CountrySong.jpg",
+            "/image/rango/gallery/CrossroadMary.jpg",
+            "/image/rango/gallery/Daisy.jpg",
+            "/image/rango/gallery/Etherati.jpg",
+            "/image/rango/gallery/Falling.jpg",
+            "/image/rango/gallery/Gravity.jpg",
+            "/image/rango/gallery/LensOfTime.jpg",
+            "/image/rango/gallery/Mistress.jpg",
+            "/image/rango/gallery/RangoClown.jpg",
+            "/image/rango/gallery/RangoFlowers.jpg",
+            "/image/rango/gallery/RangoShattered.jpg",
+            "/image/rango/gallery/Ringmaster.jpg",
+            "/image/rango/gallery/Riverbell.jpg",
+            "/image/rango/gallery/Smokehouse.jpg",
+            "/image/rango/gallery/SpaceOddity.jpg",
+            "/image/rango/gallery/TheTurk.jpg"
         ],
         "albums": [{
             "id": 1,
             "title": "Country Song",
             "path": "countrysong",
             "date": "01/24/2024",
-            "cover": "/image/rango/countrysong/countrysong/rango_country_song.jpg",
+            "cover": "/image/rango/countrysong/countrysong/countrysong.jpg",
             "genre": "Rock",
             "tracks": [{
                 "id": 1,    
@@ -52,9 +72,9 @@
                 "date": "01/24/2024",
                 "genre": "Rock",
                 "duration": "00:05:01",
-                "image": "/image/rango/countrysong/countrysong/rango_country_song.jpg",
-                "stream": "/stream/rango/countrysong/countrysong/rango_country_song.mp3",
-                "download": "/download/rango/countrysong/countrysong/rango_country_song.mp3",
+                "image": "/image/rango/countrysong/countrysong/countrysong.jpg",
+                "stream": "/stream/rango/countrysong/countrysong/countrysong.mp3",
+                "download": "/download/rango/countrysong/countrysong/countrysong.mp3",
                 "spotify" : "https://open.spotify.com/track/4OCC22zmfFm1C97DqQazOj?si=2a477e650a214ed8",
                 "amazon" : "https://www.amazon.com/music/player/albums/B0CTCVQM7K",
                 "apple" : "https://music.apple.com/us/album/country-song/1727689093?i=1727689094"
@@ -65,7 +85,7 @@
             "title": "Lens of Time",
             "path": "lensoftime",
             "date": "01/24/2024",
-            "cover": "/image/rango/lensoftime/lensoftime/rango_lensoftime.jpg",
+            "cover": "/image/rango/lensoftime/lensoftime/lensoftime.jpg",
             "genre": "Rock",
             "tracks": [{
                 "id": 1,    
@@ -73,13 +93,13 @@
                 "path": "lensoftime",
                 "date": "01/24/2024",
                 "genre": "Rock",
-                "duration": "00:05:01",
-                "image": "/image/rango/lensoftime/lensoftime/rango_lensoftime.jpg",
-                "stream": "/stream/rango/lensoftime/lensoftime/rango_lensoftime.mp3",
-                "download": "/download/rango/lensoftime/lensoftime/rango_lensoftime.mp3",
-                "spotify" : "https://open.spotify.com/track/4OCC22zmfFm1C97DqQazOj?si=2a477e650a214ed8",
-                "amazon" : "https://www.amazon.com/music/player/albums/B0CTCVQM7K",
-                "apple" : "https://music.apple.com/us/album/country-song/1727689093?i=1727689094"
+                "duration": "00:04:20",
+                "image": "/image/rango/lensoftime/lensoftime/lensoftime.jpg",
+                "stream": "/stream/rango/lensoftime/lensoftime/lensoftime.mp3",
+                "download": "/download/rango/lensoftime/lensoftime/lensoftime.mp3",
+                "spotify" : "https://open.spotify.com/track/2SHmWj00qgzC53B1UM28Il?si=96541c1ef4a54e76",
+                "amazon" : "https://amazon.com/music/player/albums/B0CTD48N7N",
+                "apple" : "https://music.apple.com/us/album/lens-of-time/1727971688?i=1727971689"
             }]
         }]
     }]

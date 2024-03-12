@@ -120,61 +120,8 @@
   top: -4px;
 }
 
-.app-stage-1 {
-  /*background-image: url("./img/stage1-large.jpg");*/
-}
-
-.app-stage-2 {
-  /*
-  height: 530px;
-  background-image: url("./img/stage1-large.jpg");
-  */
-}
-
-.app-stage-3 {
-  /*
-  background-image: url("./img/stage2-large.jpg");
-  */
-}
-
-.app-stage-4 {    
-  /*
-  background-image: url("./img/stage3-large.jpg");
-  */
-}
-
-.app-stage-image {
-
-}
-
-.app-stage-content {
-}
-
-.app-soundcloud {
-}
-
-.app-youtube {
-}
-
-.app-audio {
-  /*
-  width: 80%;
-  margin: 10% auto;
-  */
-}
-
-.app-button-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-.app-button-container button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.app-stage-gallery {
+  max-width: 640px;
 }
 
 .react-tabs { 

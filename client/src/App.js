@@ -21,6 +21,7 @@ console.log("server", server);
 
 const titles = active.title.split(" ");
 console.log("titles", titles);
+  
 
 function App() {
   const [featuredArtists, setFeaturedArtists] = useState(null);
@@ -147,13 +148,11 @@ function App() {
           </TabPanel>
           <TabPanel>
             <div className="app-stage app-stage-5">
-              <div className="app-stage-content app-stage-gallery">
-                {/*
+              <div className="app-stage-content app-stage-gallery">                
                 <Gallery className="app-gallery"
                   artist={featuredArtist}
                   server={server}                
                 />
-                */}
               </div>
             </div>
           </TabPanel>

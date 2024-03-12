@@ -24,17 +24,18 @@ export function Audio(props: AudioProps) {
 
   const { artist, server, onPlaybackChange } = props;
   const [isPlaying, setIsPlaying] = useState(false);
+  const [playCount, setPlayCount] = useState(0);
   const [tracks, setTracks] = useState(Array<any>);
   const [selectedTrack, setSelectedTrack] = useState(null);
-  const [selectedTrackIndex, setSelectedTrackIndex] = useState(-1);
+  const [selectedTrackIndex, setSelectedTrackIndex] = useState(0);
   const [streamUrl, setStreamUrl] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
 
-
   function handlePlay() {
-    console.log("Audio.Play", playerRef.current);
+    console.log("Audio.handlePlay", playerRef.current);
     setIsPlaying(true);
-    if (playerRef && playerRef.current) {
+    setPlayCount(playCount + 1);
+    if (playerRef && playerRef.current) {      
       if (onPlaybackChange) {
         onPlaybackChange(true, playerRef.current);
       }
@@ -42,7 +43,7 @@ export function Audio(props: AudioProps) {
   }
 
   function handlePause() {
-    console.log("Audio.Pause", playerRef.current);
+    console.log("Audio.handlePause", playerRef.current);
     setIsPlaying(false);
     if (playerRef && playerRef.current) {            
       if (onPlaybackChange) {
@@ -52,15 +53,15 @@ export function Audio(props: AudioProps) {
   }
 
   function clickPrevious() {
-    if (selectedTrackIndex > 0) {
-      console.log("Audio.clickPrevious", selectedTrackIndex);
+    console.log("Audio.clickPrevious", selectedTrackIndex);
+    if (selectedTrackIndex > 0) {      
       setSelectedTrackIndex(selectedTrackIndex - 1);
     }
   }
 
-  function clickNext() {    
-    if (selectedTrackIndex < tracks.length - 1) {
-      console.log("Audio.clickNext", selectedTrackIndex);
+  function clickNext() {
+    console.log("Audio.clickNext", selectedTrackIndex);
+    if (selectedTrackIndex < tracks.length - 1) {    
       setSelectedTrackIndex(selectedTrackIndex + 1);
     }
   
@@ -80,18 +81,11 @@ export function Audio(props: AudioProps) {
       setTracks(tracks);
       console.log("App.setTracks", tracks);
 
-      if (tracks && tracks.length > 0) {
-        const track = tracks[0];
+      if (tracks && tracks.length > selectedTrackIndex) {
+        const track = tracks[selectedTrackIndex];
         console.log("track", track);
         setSelectedTrack(track);
         console.log("App.setSelectedTrack", track);
-        if (track) {
-          if (tracks && tracks.length > 0) {
-            const trackIndex = tracks.indexOf(track);
-            console.log("App.setSelectedTrackIndex", trackIndex);
-            setSelectedTrackIndex(trackIndex);
-          }
-        }
       }
     }
     
@@ -167,19 +161,33 @@ export function Audio(props: AudioProps) {
 
       const barWidth = (canvas.width / bufferLength) * 2.5;
       let barHeight;
+      let prevHeight;
       let x = 0;
 
       for (let i = 0; i < bufferLength; i++) {
         barHeight = dataArray[i];
         canvasCtx.fillStyle = `rgb(${barHeight + 100},50,50)`;
-        canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
-
+        canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);        
+        if (prevHeight) {
+          canvasCtx.beginPath();
+          canvasCtx.moveTo(x, canvas.height - prevHeight / 2);
+          canvasCtx.strokeStyle = 'blue';
+          canvasCtx.lineWidth = 2;
+          const cpX = x + barWidth / 2;
+          const cpY = canvas.height - barHeight / 2;
+          const endX = x + barWidth;
+          const endY = canvas.height - barHeight / 2
+          //canvasCtx.lineTo(x + barWidth, canvas.height - barHeight / 2);
+          canvasCtx.quadraticCurveTo(cpX, cpY, endX, endY);
+          canvasCtx.stroke();          
+        }
+        prevHeight = barHeight;        
         x += barWidth + 1;
       }      
     };
 
     draw();
-  }, [artist, selectedTrackIndex, isPlaying]);
+  }, [artist, selectedTrack, selectedTrackIndex, isPlaying]);
   
   
   return <div className="audio-player">
@@ -222,15 +230,21 @@ export function Audio(props: AudioProps) {
       <canvas ref={canvasRef}/>
     </div>
     <AudioPlayer
+      volume={0.5}
       autoPlay={false}
-      autoPlayAfterSrcChange={false}
+      autoPlayAfterSrcChange={playCount > 0}
       src={streamUrl || ""}
+      onPlaying={e => console.log("Audio.onPlaying", e)}
+      onError={e => console.log("Audio.onError", e)}
+      onEnded={clickNext}
+      onCanPlay={e => console.log("Audio.onCanPlay", e)}
       onPlay={handlePlay}
       onPause={handlePause}      
       onClickNext={clickNext}
       onClickPrevious={clickPrevious}
       ref={playerRef}
       showSkipControls={true}
+      showJumpControls={tracks.length > 1}
     />
   </div>;
 }
