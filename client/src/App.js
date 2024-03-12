@@ -21,6 +21,7 @@ console.log("server", server);
 
 const titles = active.title.split(" ");
 console.log("titles", titles);
+  
 
 function App() {
   const [featuredArtists, setFeaturedArtists] = useState(null);
